@@ -64,7 +64,7 @@ export default function TopBar() {
 
 
                     <SheetTrigger asChild>
-                        
+
                         <Button
                             variant="ghost"
                             size="icon"
@@ -73,7 +73,7 @@ export default function TopBar() {
                             <Menu className="h-5 w-5" />
                         </Button>
                     </SheetTrigger>
-                    
+
 
                     <SheetContent side="right" className="w-[260px]">
                         <SheetHeader>
@@ -94,7 +94,7 @@ export default function TopBar() {
                             transition={{ duration: 0.35 }}
                             className="flex flex-col gap-3  px-5 text-lg font-medium"
                         >
-                           
+
 
                             {navItems.map((item) => (
 

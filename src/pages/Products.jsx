@@ -1,4 +1,4 @@
-import TopBar from "@/components/topbar"
+import TopBar from "@/components/TopBar"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import product from "@/assets/product.png"
