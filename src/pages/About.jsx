@@ -1,5 +1,5 @@
 import TopBar from "@/components/TopBar"
-import Footer from "@/components/footer"
+import Footer from "@/components/Footer"
 
 export default function About() {
     return (

@@ -1,5 +1,5 @@
 import TopBar from "@/components/TopBar"
-import Footer from "@/components/footer"
+import Footer from "@/components/Footer"
 import { Button } from "@/components/ui/button"
 import product from "@/assets/product.png"
 import { Link } from "react-router-dom"
