@@ -1,15 +1,13 @@
-import TopBar from "@/components/TopBar"
+import TopBar from "@/components/topbar"
+import Hero from "@/components/hero"
+import Footer from "@/components/footer"
 
 export default function Home() {
   return (
     <>
       <TopBar />
-
-      <div className="p-10">
-        <h1 className="text-3xl font-bold">
-          Welcome to Suja's Hair Oil
-        </h1>
-      </div>
+      <Hero />
+      <Footer />
     </>
   )
 }

@@ -1,64 +1,120 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { Menu } from "lucide-react"
+import { motion } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
 import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
+    Sheet,
+    SheetContent,
+    SheetTrigger,
+    SheetHeader,
+    SheetTitle,
 } from "@/components/ui/sheet"
 
 export default function TopBar() {
-  return (
-    <header className="border-b bg-white sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4">
 
-        {/* Logo */}
-        <Link to="/" className="text-xl font-bold text-green-700">
-          SUJA'S HAIR OIL
-        </Link>
+    const location = useLocation()
 
-        {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center gap-6">
-          <Link to="/" className="hover:text-green-600">Home</Link>
-          <Link to="/about" className="hover:text-green-600">About</Link>
-          <Link to="/products" className="hover:text-green-600">Products</Link>
-          <Link to="/contact" className="hover:text-green-600">Contact</Link>
+    const navItems = [
+        { name: "Home", path: "/" },
+        { name: "About", path: "/about" },
+        { name: "Products", path: "/products" },
+        { name: "Contact", path: "/contact" }
+    ]
 
-          <Button className="bg-green-700 hover:bg-green-800">
-            Buy Now
-          </Button>
-        </nav>
+    return (
+        <header className="border-b bg-white/90 backdrop-blur sticky top-0 z-50">
+            <div className="  flex h-16 items-center justify-between px-6 pr-10">
 
-        {/* Mobile Menu */}
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
+                {/* Logo */}
+                <Link
+                    to="/"
+                    className="text-xl font-semibold tracking-wide text-green-700"
+                >
+                    SUJA'S HAIR OIL
+                </Link>
 
-          <SheetContent side="right">
-            <div className="flex flex-col gap-6 mt-10">
+                {/* Desktop Menu */}
+                <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
 
-              <Link to="/">Home</Link>
-              <Link to="/about">About</Link>
-              <Link to="/products">Products</Link>
-              <Link to="/contact">Contact</Link>
+                    {navItems.map((item) => {
+                        const active = location.pathname === item.path
 
-              <Button className="bg-green-700 hover:bg-green-800">
-                Buy Now
-              </Button>
+                        return (
+                            <Link
+                                key={item.name}
+                                to={item.path}
+                                className="relative group text-gray-700 hover:text-green-700 transition"
+                            >
+                                {item.name}
+
+                                {/* animated underline */}
+                                <span
+                                    className={`absolute left-0 -bottom-1 h-[2px] bg-green-700 transition-all duration-300 ${active ? "w-full" : "w-0 group-hover:w-full"
+                                        }`}
+                                />
+                            </Link>
+                        )
+                    })}
+
+                </nav>
+
+                {/* Mobile Menu */}
+                <Sheet>
+
+
+                    <SheetTrigger asChild>
+                        
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="md:hidden"
+                        >
+                            <Menu className="h-5 w-5" />
+                        </Button>
+                    </SheetTrigger>
+                    
+
+                    <SheetContent side="right" className="w-[260px]">
+                        <SheetHeader>
+                            <div className="flex items-center justify-between">
+                                <Link
+                                    to="/"
+                                    className="text-xl font-semibold tracking-wide text-green-700"
+                                >
+                                    SUJA'S HAIR OIL
+                                </Link>
+                            </div>
+                        </SheetHeader>
+
+
+                        <motion.div
+                            initial={{ opacity: 0, x: 40 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.35 }}
+                            className="flex flex-col gap-3  px-5 text-lg font-medium"
+                        >
+                           
+
+                            {navItems.map((item) => (
+
+                                <Link
+                                    key={item.name}
+                                    to={item.path}
+                                    className="text-gray-700 hover:text-green-700 transition"
+                                >
+                                    {item.name}
+                                </Link>
+
+                            ))}
+
+                        </motion.div>
+
+                    </SheetContent>
+
+                </Sheet>
 
             </div>
-          </SheetContent>
-        </Sheet>
-
-      </div>
-    </header>
-  )
+        </header>
+    )
 }
